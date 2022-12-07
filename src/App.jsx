@@ -6,6 +6,7 @@ import useProduct from './hooks/use-product';
 import Header from './components/Header';
 import ProductPage from './routes/ProductPage';
 import Root from './routes/Root';
+import Footer from './components/Footer';
 
 function App() {
   const { removeActiveProduct } = useProduct();
@@ -23,6 +24,7 @@ function App() {
         <Route path='/' element={<Root />} />
         <Route path='/product/:id' element={<ProductPage />} />
       </Routes>
+      <Footer />
     </>
   );
 }

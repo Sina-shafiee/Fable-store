@@ -1,7 +1,12 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import useWindowSize from '../hooks/use-windowSize';
+
 import logo from '../assets/images/logo.svg';
+import { Link } from 'react-router-dom';
+
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const windowSize = useWindowSize();
   const toggleCheckRef = useRef(null);
 
   const handleToggleClick = () => {
@@ -11,9 +16,21 @@ const Header = () => {
       setShowMenu(false);
     }
   };
+
+  useEffect(() => {
+    console.log(windowSize);
+    if (windowSize > 640) {
+      setShowMenu(true);
+    } else {
+      setShowMenu(false);
+    }
+  }, [windowSize]);
+
   return (
     <header className='navbar z-30 p-2 sm:p-4 flex justify-between sticky top-0 left-0 bg-white bg-opacity-95 backdrop-blur container mx-auto'>
-      <img className='w-28 p-0 btn btn-ghost sm:w-32' src={logo} alt='logo' />
+      <Link to={'/'}>
+        <img className='w-28 p-0 btn btn-ghost sm:w-32' src={logo} alt='logo' />
+      </Link>
 
       <label
         className='btn sm:hidden p-1 btn-ghost swap swap-rotate'
@@ -45,12 +62,20 @@ const Header = () => {
         <section className='fixed sm:static top-14 right-6'>
           <ul className='menu bg-white lg:menu-normal w-52  rounded-box sm:bg-transparent sm:flex-row'>
             <li>
-              <a className='sm:hover:rounded-md text-base md:text-lg xl:text-xl'>
+              <Link
+                to={'/'}
+                className='sm:hover:rounded-md text-base md:text-lg xl:text-xl'
+              >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a className='sm:hover:rounded-md md:text-lg xl:text-xl'>Cart</a>
+              <Link
+                to={'/cart'}
+                className='sm:hover:rounded-md md:text-lg xl:text-xl'
+              >
+                Cart
+              </Link>
             </li>
           </ul>
         </section>
