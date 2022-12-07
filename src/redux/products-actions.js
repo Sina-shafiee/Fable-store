@@ -6,7 +6,7 @@ export const ERORR_PRODUCTS = 'ERROR_PRODUCTS';
 export const addProducts = () => async (dispatch) => {
   const respone = await storeApi.get('/products', {
     params: {
-      limit: 12,
+      limit: 20,
       sort: 'asc'
     }
   });

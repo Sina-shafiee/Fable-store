@@ -5,12 +5,15 @@ import {
   REMOVE_ACTIVE_PRODUCT
 } from './active-product-actions';
 
+import { ADD_TO_CART, REMOVE_FROM_CART } from './cart-actions';
+
 const initalState = {
   productsState: {
     isError: false,
     products: []
   },
-  activeProduct: {}
+  activeProduct: {},
+  cart: []
 };
 
 export const productsReducer = (
@@ -44,6 +47,29 @@ export const activeProductReducer = (
     case REMOVE_ACTIVE_PRODUCT:
       return {};
 
+    default:
+      return state;
+  }
+};
+
+export const cartReducer = (state = initalState.cart, action) => {
+  let newData;
+  switch (action.type) {
+    case ADD_TO_CART:
+      const checkifAlreadyExist = state.filter(
+        (product) => product.id === action.payload.id
+      );
+
+      console.log(checkifAlreadyExist);
+      if (checkifAlreadyExist.length === 1) {
+        return state;
+      }
+
+      newData = [...state, action.payload];
+      return newData;
+    case REMOVE_FROM_CART:
+      newData = state.filter((product) => product.id !== action.payload);
+      return newData;
     default:
       return state;
   }

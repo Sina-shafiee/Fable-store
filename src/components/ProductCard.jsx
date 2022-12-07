@@ -17,7 +17,7 @@ const ProductCard = ({ id, title, price, image }) => {
         className='card-body cursor-pointer'
         onClick={() => navigate(`/product/${id}`)}
       >
-        <h2 className='card-title'>{title.slice(0, 20)}...</h2>
+        <h2 className='card-title text-base'>{title.slice(0, 20)}...</h2>
         <p>{price} $</p>
         <div className='card-actions justify-end'></div>
       </div>

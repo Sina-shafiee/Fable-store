@@ -1,13 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 import useWindowSize from '../hooks/use-windowSize';
 
+import { BsCart2 } from 'react-icons/bs';
+
 import logo from '../assets/images/logo.svg';
 import { Link } from 'react-router-dom';
+import useCart from '../hooks/use-cart';
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const windowSize = useWindowSize();
   const toggleCheckRef = useRef(null);
+  const { cart } = useCart();
 
   const handleToggleClick = () => {
     if (toggleCheckRef.current.checked) {
@@ -18,7 +22,6 @@ const Header = () => {
   };
 
   useEffect(() => {
-    console.log(windowSize);
     if (windowSize > 640) {
       setShowMenu(true);
     } else {
@@ -60,7 +63,7 @@ const Header = () => {
       </label>
       {showMenu ? (
         <section className='fixed sm:static top-14 right-6'>
-          <ul className='menu bg-white lg:menu-normal w-52  rounded-box sm:bg-transparent sm:flex-row'>
+          <ul className='menu bg-white w-52 sm:items-center flex-nowrap rounded-box sm:bg-transparent sm:flex-row'>
             <li>
               <Link
                 to={'/'}
@@ -70,11 +73,11 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link
-                to={'/cart'}
-                className='sm:hover:rounded-md md:text-lg xl:text-xl'
-              >
-                Cart
+              <Link to={'/cart'} className='sm:hover:rounded-md text-2xl'>
+                <BsCart2 />
+                <span className='badge badge-sm badge-ghost'>
+                  {cart.length}
+                </span>
               </Link>
             </li>
           </ul>

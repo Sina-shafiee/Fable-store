@@ -7,6 +7,7 @@ import Header from './components/Header';
 import ProductPage from './routes/ProductPage';
 import Root from './routes/Root';
 import Footer from './components/Footer';
+import Cart from './routes/Cart';
 
 function App() {
   const { removeActiveProduct } = useProduct();
@@ -17,12 +18,14 @@ function App() {
       removeActiveProduct();
     }
   }, [location]);
+
   return (
     <>
       <Header />
       <Routes>
         <Route path='/' element={<Root />} />
         <Route path='/product/:id' element={<ProductPage />} />
+        <Route path='/cart' element={<Cart />} />
       </Routes>
       <Footer />
     </>
