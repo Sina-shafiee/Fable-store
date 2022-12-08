@@ -28,7 +28,13 @@ function App() {
         <Route
           path='/product/:id'
           element={
-            <Suspense fallback={<Loading />}>
+            <Suspense
+              fallback={
+                <div className='min-h-[74vh] flex items-center justify-center'>
+                  <Loading />
+                </div>
+              }
+            >
               <ProductPage />
             </Suspense>
           }
@@ -36,7 +42,13 @@ function App() {
         <Route
           path='/cart'
           element={
-            <Suspense fallback={<Loading />}>
+            <Suspense
+              fallback={
+                <div className='min-h-[74vh] flex items-center justify-center'>
+                  <Loading />
+                </div>
+              }
+            >
               <Cart />
             </Suspense>
           }
