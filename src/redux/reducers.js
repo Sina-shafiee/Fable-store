@@ -8,29 +8,18 @@ import {
 import { ADD_TO_CART, REMOVE_FROM_CART } from './cart-actions';
 
 const initalState = {
-  productsState: {
-    isError: false,
-    products: []
-  },
+  products: [],
   activeProduct: {},
   cart: []
 };
 
 export const productsReducer = (
-  productState = initalState.productsState,
+  productState = initalState.products,
   action
 ) => {
   switch (action.type) {
     case ADD_PRODUCTS:
-      return {
-        ...productState,
-        products: action.payload
-      };
-    case ERORR_PRODUCTS:
-      return {
-        ...productState,
-        isError: true
-      };
+      return [...action.payload];
 
     default:
       return productState;
@@ -56,15 +45,6 @@ export const cartReducer = (state = initalState.cart, action) => {
   let newData;
   switch (action.type) {
     case ADD_TO_CART:
-      const checkifAlreadyExist = state.filter(
-        (product) => product.id === action.payload.id
-      );
-
-      console.log(checkifAlreadyExist);
-      if (checkifAlreadyExist.length === 1) {
-        return state;
-      }
-
       newData = [...state, action.payload];
       return newData;
     case REMOVE_FROM_CART:

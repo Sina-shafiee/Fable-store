@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 const OrderForm = () => {
+  // form data state
   const [formData, setFormData] = useState({
     city: '',
     deliveryMethod: 'shop',
@@ -12,6 +13,7 @@ const OrderForm = () => {
     comment: ''
   });
 
+  // destructuring form data
   const {
     city,
     deliveryMethod,
@@ -23,6 +25,7 @@ const OrderForm = () => {
     comment
   } = formData;
 
+  // inputs onchange handler
   const handleFormDataChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -32,7 +35,7 @@ const OrderForm = () => {
       <label className='font-semibold inline-block w-full mt-4'>
         City
         <input
-          className='mt-2 font-normal inline-block w-full border-[1px] focus:outline-[1px] border-black h-8 p-3 rounded-sm focus:outline-black focus:shadow-sm'
+          className='mt-2 font-normal inline-block w-full border-[1px] focus:outline-[1px] border-black h-8 p-4 rounded-sm focus:outline-black focus:shadow-sm'
           placeholder='Enter City'
           type='text'
           name='city'
@@ -49,7 +52,7 @@ const OrderForm = () => {
           type='button'
           name='deliveryMethod'
           value='shop'
-          className={`flex-1 border-[1px] border-black rounded-sm py-1 transition-all duration-300 ${
+          className={`flex-1 border-[1px] border-black rounded-sm py-[0.4rem] transition-all duration-300 ${
             deliveryMethod === 'shop' ? 'bg-black text-white' : null
           }`}
         >
@@ -60,7 +63,7 @@ const OrderForm = () => {
           type='button'
           name='deliveryMethod'
           value='home'
-          className={`flex-1 border-[1px] border-black rounded-sm py-1 transition-all duration-300 ${
+          className={`flex-1 border-[1px] border-black rounded-sm py-[0.4rem] transition-all duration-300 ${
             deliveryMethod === 'home' ? 'bg-black text-white' : null
           }`}
         >
@@ -71,7 +74,7 @@ const OrderForm = () => {
       <label className='font-semibold inline-block w-full mt-4'>
         Address
         <input
-          className='mt-2 font-normal inline-block w-full border-[1px] focus:outline-[1px] border-black h-8 p-3 rounded-sm focus:outline-black focus:shadow-sm'
+          className='mt-2 font-normal inline-block w-full border-[1px] focus:outline-[1px] border-black h-8 p-4 rounded-sm focus:outline-black focus:shadow-sm'
           placeholder='Enter your address'
           type='text'
           name='address'
@@ -84,7 +87,7 @@ const OrderForm = () => {
       <label className='font-semibold inline-block w-full mt-4'>
         Point
         <input
-          className='mt-2 font-normal block w-[70%] border-[1px] focus:outline-[1px] border-black h-8 p-3 rounded-sm focus:outline-black focus:shadow-sm'
+          className='mt-2 font-normal block w-[70%] border-[1px] focus:outline-[1px] border-black h-8 p-4 rounded-sm focus:outline-black focus:shadow-sm'
           placeholder='Enter your loyalty card'
           type='number'
           name='loyalty'
@@ -99,7 +102,7 @@ const OrderForm = () => {
       <label className='font-semibold inline-block w-full mt-4 text-sm'>
         name
         <input
-          className='mt-2 font-normal block w-full border-[1px] focus:outline-[1px] border-black h-8 p-3 rounded-sm focus:outline-black focus:shadow-sm'
+          className='mt-2 font-normal block w-full border-[1px] focus:outline-[1px] border-black h-8 p-4 rounded-sm focus:outline-black focus:shadow-sm'
           placeholder='Enter your name'
           type='text'
           name='name'
@@ -111,7 +114,7 @@ const OrderForm = () => {
       <label className='font-semibold inline-block w-full mt-4 text-sm'>
         phone
         <input
-          className='mt-2 font-normal block w-full border-[1px] focus:outline-[1px] border-black h-8 p-3 rounded-sm focus:outline-black focus:shadow-sm'
+          className='mt-2 font-normal block w-full border-[1px] focus:outline-[1px] border-black h-8 p-4 rounded-sm focus:outline-black focus:shadow-sm'
           placeholder='Enter your number'
           type='number'
           name='phone'
@@ -123,7 +126,7 @@ const OrderForm = () => {
       <label className='font-semibold inline-block w-full mt-4 text-sm'>
         name
         <input
-          className='mt-2 font-normal block w-full border-[1px] focus:outline-[1px] border-black h-8 p-3 rounded-sm focus:outline-black focus:shadow-sm'
+          className='mt-2 font-normal block w-full border-[1px] focus:outline-[1px] border-black h-8 p-4 rounded-sm focus:outline-black focus:shadow-sm'
           placeholder='Enter your email'
           type='email'
           name='email'
@@ -140,7 +143,7 @@ const OrderForm = () => {
         type='button'
         name='deliveryMethod'
         value='home'
-        className={`disabled w-full mt-2 border-[1px] border-black rounded-sm py-1 transition-all duration-300 bg-black text-white
+        className={`disabled w-full mt-2 border-[1px] border-black rounded-sm py-[0.4rem] transition-all duration-300 bg-black text-white
           `}
         disabled
       >
@@ -176,7 +179,7 @@ const OrderForm = () => {
         type='button'
         name='deliveryMethod'
         value='home'
-        className={`disabled w-full mt-2 cursor-not-allowed rounded-sm py-1 transition-all duration-300 bg-gray-600 text-white
+        className={`disabled w-full mt-2 cursor-not-allowed rounded-sm py-[0.4rem] transition-all duration-300 bg-gray-600 text-white
           `}
         disabled
       >

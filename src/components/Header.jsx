@@ -8,11 +8,16 @@ import { Link } from 'react-router-dom';
 import useCart from '../hooks/use-cart';
 
 const Header = () => {
+  // menu show hide state
   const [showMenu, setShowMenu] = useState(false);
+  // getting our window width from custom hook
   const windowSize = useWindowSize();
+  // checkbox ref
   const toggleCheckRef = useRef(null);
+  // getting cart from useCart hook
   const { cart } = useCart();
 
+  // menu open close functionalty
   const handleToggleClick = () => {
     if (toggleCheckRef.current.checked) {
       setShowMenu(true);
@@ -21,6 +26,7 @@ const Header = () => {
     }
   };
 
+  // closing and opening the menu according to widow width
   useEffect(() => {
     if (windowSize > 640) {
       setShowMenu(true);

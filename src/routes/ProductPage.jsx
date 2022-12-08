@@ -1,17 +1,26 @@
 import React, { useEffect } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useLocation, useParams } from 'react-router';
+import Loading from '../components/Loading';
 import useCart from '../hooks/use-cart';
 import useProduct from '../hooks/use-product';
 
 const ProductPage = () => {
   const { pathname } = useLocation();
-  const { addToCart } = useCart();
+  const { cart, addToCart } = useCart();
   const { id } = useParams();
   const { productState, addActiveProduct } = useProduct();
   const { title, price, image, description, rating } = productState;
 
+  const checkIfAlreadyExist = (id) => {
+    const result = cart.filter((product) => product.id === id);
+    return result.length === 1 ? true : false;
+  };
+
   const handleAddToCartClick = () => {
+    if (checkIfAlreadyExist(id)) {
+      return;
+    }
+
     const product = {
       title,
       price,
@@ -41,11 +50,9 @@ const ProductPage = () => {
     <main className='container mx-auto min-h-[70vh] flex items-center justify-center p-4'>
       {Object.keys(productState).length ? (
         <section className='flex flex-col items-center justify-center lg:px-40 sm:grid sm:grid-cols-2 place-content-center'>
-          <LazyLoadImage
-            className='w-full h-full object-fill p-10 sm:w-[300px] sm:p-0'
-            src={image}
-            alt={title}
-          />
+          <div className='w-full min-h-[380px] h-full object-fill p-10 sm:w-[300px] sm:p-0'>
+            <img className='w-full' src={image} alt={title} />
+          </div>
           <section className='sm:flex flex-col justify-around'>
             <section>
               <h2 className='title font-semibold'>{title}</h2>
@@ -54,14 +61,18 @@ const ProductPage = () => {
             </section>
             <button
               onClick={handleAddToCartClick}
-              className='max-w-max my-4 btn btn-sm'
+              className={`max-w-max my-4 btn btn-sm capitalize ${
+                checkIfAlreadyExist(id)
+                  ? 'bg-gray-700 cursor-not-allowed'
+                  : null
+              }`}
             >
-              Add to cart
+              {checkIfAlreadyExist(id) ? 'Added' : 'Add to cart'}
             </button>
           </section>
         </section>
       ) : (
-        <h2>loading..</h2>
+        <Loading />
       )}
     </main>
   );

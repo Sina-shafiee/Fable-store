@@ -15,13 +15,28 @@ const Footer = () => {
         <p>Copyright © 2022 - All right reserved</p>
       </div>
       <div className='grid-flow-col gap-4 pr-14 md:place-self-center md:justify-self-end text-2xl md:text-2xl'>
-        <a className='cursor-pointer'>
+        <a
+          target='_blank'
+          rel='noopener noreferrer'
+          href='https://www.twitter.com/'
+          className='cursor-pointer'
+        >
           <BsTwitter />
         </a>
-        <a className='cursor-pointer'>
+        <a
+          target='_blank'
+          rel='noopener noreferrer'
+          href='https://www.youtube.com/'
+          className='cursor-pointer'
+        >
           <BsYoutube />
         </a>
-        <a className='cursor-pointer'>
+        <a
+          target='_blank'
+          rel='noopener noreferrer'
+          href='https://www.facebook.com/'
+          className='cursor-pointer'
+        >
           <BsFacebook />
         </a>
       </div>

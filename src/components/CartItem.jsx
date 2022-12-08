@@ -4,9 +4,12 @@ import useCart from '../hooks/use-cart';
 
 const CartItem = ({ image, title, id, price }) => {
   const { removeFromCart } = useCart();
+
+  // handling remove from cart functionalty
   const handleRemove = () => {
     removeFromCart(id);
   };
+
   return (
     <section className='flex max-w-md w-full mt-4 shrink gap-4 shadow-sm p2 rounded-sm'>
       <LazyLoadImage

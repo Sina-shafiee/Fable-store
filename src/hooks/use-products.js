@@ -1,13 +1,18 @@
 import React from 'react';
 import useActions from './use-actions';
-import { addProducts, errorProducts } from '../redux/products-actions';
+import { addProducts } from '../redux/products-actions';
 import { useSelector } from 'react-redux';
 
-const useProducts = () => {
-  const actions = useActions({ addProducts, errorProducts });
-  const productsState = useSelector((state) => state.productsState);
+/**
+ *  custom hook to make using all products state easy
+ * @returns all products state and its action creators
+ */
 
-  return { productsState, ...actions };
+const useProducts = () => {
+  const actions = useActions({ addProducts });
+  const products = useSelector((state) => state.products);
+
+  return { products, ...actions };
 };
 
 export default useProducts;

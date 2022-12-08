@@ -3,7 +3,6 @@ import CartItem from './CartItem';
 
 const CartList = () => {
   const { cart } = useCart();
-  console.log(cart);
 
   return (
     <section className='mt-4 '>

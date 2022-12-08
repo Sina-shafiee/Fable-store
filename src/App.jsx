@@ -1,14 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import { Routes, Route, useLocation } from 'react-router';
 
 import useProduct from './hooks/use-product';
 
-import Header from './components/Header';
-import ProductPage from './routes/ProductPage';
-import Root from './routes/Root';
-import Footer from './components/Footer';
-import Cart from './routes/Cart';
+const ProductPage = lazy(() => import('./routes/ProductPage'));
+const Footer = lazy(() => import('./components/Footer'));
+const Cart = lazy(() => import('./routes/Cart'));
 
+import Root from './routes/Root';
+import Header from './components/Header';
+import Loading from './components/Loading';
 function App() {
   const { removeActiveProduct } = useProduct();
   const location = useLocation();
@@ -24,8 +25,22 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Root />} />
-        <Route path='/product/:id' element={<ProductPage />} />
-        <Route path='/cart' element={<Cart />} />
+        <Route
+          path='/product/:id'
+          element={
+            <Suspense fallback={<Loading />}>
+              <ProductPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path='/cart'
+          element={
+            <Suspense fallback={<Loading />}>
+              <Cart />
+            </Suspense>
+          }
+        />
       </Routes>
       <Footer />
     </>
