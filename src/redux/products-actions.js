@@ -12,8 +12,8 @@ export const ERORR_PRODUCTS = 'ERROR_PRODUCTS';
 export const addProducts = () => async (dispatch) => {
   const respone = await storeApi.get('/products', {
     params: {
-      limit: 20,
-      sort: 'asc'
+      offset: 10,
+      limit: 12
     }
   });
   const data = respone.data;

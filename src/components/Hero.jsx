@@ -1,3 +1,6 @@
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 import logo from '../assets/images/logo.svg';
 import heroImg from '../assets/images/hero.png';
 
@@ -11,9 +14,10 @@ const Hero = () => {
           any concepts
         </p>
       </div>
-      <img
+      <LazyLoadImage
         className='mt-8 object-cover min-h-[22rem] md:min-h-[28rem]'
         src={heroImg}
+        effect='blur'
         alt='hero image'
       />
     </section>

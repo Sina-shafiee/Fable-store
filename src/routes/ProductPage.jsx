@@ -3,13 +3,25 @@ import { useLocation, useParams } from 'react-router';
 import Loading from '../components/Loading';
 import useCart from '../hooks/use-cart';
 import useProduct from '../hooks/use-product';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectFade, Navigation, Pagination } from 'swiper';
+
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import 'swiper/css/pagination';
+
+import './ProductPage.css';
 
 const ProductPage = () => {
   const { pathname } = useLocation();
   const { cart, addToCart } = useCart();
   const { id } = useParams();
   const { productState, addActiveProduct } = useProduct();
-  const { title, price, image, description, rating } = productState;
+  const { title, price, images, description, rating } = productState;
 
   const checkIfAlreadyExist = (id) => {
     const result = cart.filter((product) => product.id === id);
@@ -24,7 +36,7 @@ const ProductPage = () => {
     const product = {
       title,
       price,
-      image,
+      images,
       description,
       rating,
       id,
@@ -49,11 +61,32 @@ const ProductPage = () => {
   return (
     <main className='container mx-auto min-h-[70vh] flex items-center justify-center p-4'>
       {Object.keys(productState).length ? (
-        <section className='flex flex-col items-center justify-center lg:px-40 sm:grid sm:grid-cols-2 place-content-center'>
-          <div className='w-full min-h-[380px] h-full object-fill p-10 sm:w-[300px] sm:p-0'>
-            <img className='w-full' src={image} alt={title} />
-          </div>
-          <section className='sm:flex flex-col justify-around'>
+        <section className='flex flex-col items-center justify-center lg:px-20 sm:grid sm:grid-cols-2 place-content-center'>
+          <Swiper
+            className='flex justify-center w-full items-center min-h-[300px] max-w-[300px] sm:max-w-[400px] cursor-grab md:min-h-full h-full object-fill p-2'
+            spaceBetween={30}
+            effect={'fade'}
+            navigation={true}
+            pagination={{
+              clickable: true
+            }}
+            modules={[EffectFade, Pagination]}
+          >
+            {images.map((img, index) => {
+              return (
+                <SwiperSlide key={index}>
+                  <LazyLoadImage
+                    effect='blur'
+                    className='w-full'
+                    src={img}
+                    alt={title}
+                  />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+
+          <section className='sm:flex w-full h-full flex-col justify-around'>
             <section>
               <h2 className='title font-semibold'>{title}</h2>
               <p className='mt-2'>{price} $</p>

@@ -10,7 +10,7 @@ const Footer = () => {
     <footer className='container mx-auto footer items-center py-12 px-4'>
       <div className='items-center flex flex-wrap gap-4'>
         <Link to={'/'}>
-          <LazyLoadImage src={logo} alt='logo' className='w-36' />
+          <LazyLoadImage src={logo} alt='logo' className='w-36 select-none' />
         </Link>
         <p>Copyright © 2022 - All right reserved</p>
       </div>
